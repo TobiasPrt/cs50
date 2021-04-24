@@ -143,13 +143,25 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
+    // loop the first dimension of preferences, which is the same as to loop
+    // through all the voters
     for (int j = 0; j < voter_count; ++j)
     {
+        // for each "voter", we go through their order of preferences
+        // starting the loop with the most preferred candidate at position 0, if
+        // this candidat is eliminated we go to the next most preferred at position 1
+        // and so on. this way we are getting the most preferred candidate that is not eliminated 
+        // i is saving the position of the voter in the order of preference, so we can 
+        // reference it later, we add to i each time a candidate which the voter preferres is 
+        // eliminated and go out of the loop as soon as we approach a candidate which is not
+        // eliminated
         int i = 0;
         while(candidates[preferences[j][i]].eliminated)
         {
             ++i;
         }
+        // here we reference the candidate which position we saved in the step before and
+        // can update its vote count
         ++candidates[preferences[j][i]].votes;
     }
     return;
