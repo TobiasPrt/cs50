@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+                <button class="btn correct">6 people per 1 sheep</button>
+                <button class="btn incorrect">3 people per 1 sheep</button>
+                <button class="btn incorrect">1 people per 1 sheep</button>
+                <button class="btn incorrect">1 person per 3 sheep</button>
+                <button class="btn incorrect">1 person per 6 sheep</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>In which country is it illegal to own only one guinea pig, as a lone guinea pug might get lonely?</h3>
+                <input type="text" class="answer"> <button class="check">Check Answer</button>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll(".btn").forEach((btn) => btn.addEventListener("click", (ev) => {
+                ev.preventDefault();
+                if (btn.classList.contains("incorrect")) {
+                    document.querySelector("button.btn:first-of-type").insertAdjacentHTML("beforebegin", "<p>Incorrect!</p>");
+                    btn.style.backgroundColor = "red";
+                } else {
+                    document.querySelector("button.btn:first-of-type").insertAdjacentHTML("beforebegin", "<p>Correct!</p>");
+
+                    btn.style.backgroundColor = "green";
+                }
+            }) );
+
+            document.querySelector(".check").addEventListener("click", (ev) => {
+                ev.preventDefault();
+                let answerField = document.querySelector("input");
+                
+                if (answerField.value == "Switzerland") {
+                    document.querySelector("div.section:last-of-type > h3").insertAdjacentHTML("beforebegin", "<p>Incorrect!</p>");
+
+                    answerField.style.backgroundColor = "green";
+                } else {
+                    document.querySelector("div.section:last-of-type > h3").insertAdjacentHTML("beforebegin", "<p>Incorrect!</p>");
+                    answerField.style.backgroundColor = "red";
+                }
+            });
+        </script>
+    </body>
+</html>
